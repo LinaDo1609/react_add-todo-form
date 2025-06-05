@@ -1,5 +1,5 @@
-import { Todo } from "./todo"
+import { Todo } from './todo';
 
-export type listTodo = {
-  todos: Todo[]
-}
+export type ListTodo = {
+  todos: Todo[];
+};

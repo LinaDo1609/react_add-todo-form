@@ -1,18 +1,16 @@
-import classNames from "classnames";
-import { Todo } from "../../types/todo";
-import { UserInfo } from "../UserInfo";
+import classNames from 'classnames';
+import { Todo } from '../../types/todo';
+import { UserInfo } from '../UserInfo';
 import usersFromServer from '../../api/users';
 
 type TodoItem = {
-  todo : Todo
-}
+  todo: Todo;
+};
 
 export const TodoInfo: React.FC<TodoItem> = ({ todo }) => {
-  
   const getUserById = (userId: number) => {
-
-    return usersFromServer.find((user)=> user.id === userId)
-  }
+    return usersFromServer.find(user => user.id === userId);
+  };
 
   const user = getUserById(todo.userId);
 
@@ -20,18 +18,21 @@ export const TodoInfo: React.FC<TodoItem> = ({ todo }) => {
     return null;
   }
 
-  
   const todoItem = {
     ...todo,
-    user: getUserById(todo.userId)
-  }
-  
+    user,
+  };
 
   return (
-        <article data-id={todoItem.id} className={classNames('TodoInfo', {'TodoInfo--completed': todoItem.completed})}>
-        <h2 className="TodoInfo__title">{todoItem.title}</h2>
-      
-      <UserInfo user ={user} />
-      </article>
-    )
+    <article
+      data-id={todoItem.id}
+      className={classNames('TodoInfo', {
+        'TodoInfo--completed': todoItem.completed,
+      })}
+    >
+      <h2 className="TodoInfo__title">{todoItem.title}</h2>
+
+      <UserInfo user={user} />
+    </article>
+  );
 };
